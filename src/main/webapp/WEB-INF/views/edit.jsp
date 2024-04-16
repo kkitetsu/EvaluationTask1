@@ -16,7 +16,7 @@
 			<label for="title">bookNM:</label>
 			<input type="text" id="bookNM" name="bookNM" value="">
 			<label for="title">price:</label>
-			<input type="text" id="price" name="price" value="">
+			<input type="number" id="price" name="price" value="">
 			<input type="submit" id="submit" name="action" value="変更確認">
 			<input type="submit" id="cancel" name="action" value="キャンセル">
 		</form>

@@ -16,6 +16,7 @@
 	table, th, td {
 	  border: 1px solid blue;
 	  border-collapse: collapse;
+	  padding: 10px;
 	}
 </style>
 </head>

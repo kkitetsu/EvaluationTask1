@@ -68,9 +68,10 @@ public class Dao {
     		sql += "ISBN_CD=" + isbnCD + ", ";
     	}
     	if (!bookNM.isBlank()) {
-    		sql += "BOOK_NM=" + bookNM + ", ";
+    		sql += "BOOK_NM=\'" + bookNM + "\', ";
+    		sql += "BOOK_KANA=\'" + getNewKANA(bookNM) + "\', ";
     	}
-    	if (!price.isBlank()) {
+    	if (!price.isBlank() && Integer.parseInt(price) >= 0) {
     		sql += "PRICE=" + price + ", ";
     	}
     	sql += "UPDATE_DATETIME=CURRENT_TIMESTAMP" + " WHERE " + "JAN_CD=" + JAN_CD + ";";
@@ -78,6 +79,27 @@ public class Dao {
     	connect();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		return statement.executeUpdate();
+    }
+    
+    /**
+     * Get KANA corresponds to inputStr.
+     * Code obtained from https://tech.kurojica.com/archives/5291/
+     * 
+     * @param inputStr
+     * @return ひらがな表記をカタカナに変換。その他はそのまま。
+     */
+    private String getNewKANA(String inputStr) {
+    	
+		StringBuffer buf = new StringBuffer();
+	    for (int i = 0; i < inputStr.length(); i++) {
+	        char code = inputStr.charAt(i);
+	        if ((code >= 0x3041) && (code <= 0x3093)) {
+	          buf.append((char) (code + 0x60));
+	        } else {
+	          buf.append(code);
+	        }
+	    }
+		return buf.toString();
     }
     
 }

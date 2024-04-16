@@ -55,6 +55,7 @@ public class FinalAssignmentController extends HttpServlet {
 		if (request.getParameter("action").equals("変更")) {
 			// 変更ボタン押したので、edit.jsp へ遷移
 			String url = "WEB-INF/views/edit.jsp";
+			// 変更対象の JAN_CD を渡す
 			request.setAttribute("JAN_CD", request.getParameter("JAN_CD"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
